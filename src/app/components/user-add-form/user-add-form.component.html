@@ -1,0 +1,77 @@
+<div class="container-fluid" style="width: 400px">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Añadir nuevo usuario</h1>
+        </div>
+    </div>
+    <div [hidden]="submitted">
+        <form action="" method="post" (ngSubmit)="validar()" #studentForm="ngForm">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="name" class="form-label">Nombre *</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" required
+                        [(ngModel)]="user.name" />
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="surnames" class="form-label">Apellidos *</label>
+                    <input type="text" class="form-control" id="surnames" name="surnames" placeholder="Apellidos"
+                        required [(ngModel)]="user.surnames" />
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="dni" class="form-label">DNI</label>
+                    <input type="text" class="form-control" id="dni" name="dni" [(ngModel)]="user.dni" />
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="phone" class="form-label">Teléfono *</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Teléfono" required
+                        [(ngModel)]="user.phone" />
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="sexo" class="form-label">Sexo *</label>
+                    <select class="form-select" aria-label="Default select example" name="sexo" id="sexo" required
+                        [(ngModel)]="user.sexo">
+                        <option value="" selected="selected">-Select one-</option>
+                        <option [value]="">Hombre</option>
+                        <option [value]="">Mujer</option>
+                    </select>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="conocerWeb" class="form-label">¿Cómo conociste nuesta web? *</label>
+                    <select class="form-select" aria-label="Default select example" name="conocerWeb" id="conocerWeb" required
+                        [(ngModel)]="user.conocerWeb">
+                        <option value="" selected="selected">-Select one-</option>
+                        @for(item of conocerWeb; track item){
+                        <option [value]="item">{{ item }}</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="passwd" class="form-label">Contraseña *</label>
+                    <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Contraseña" required
+                        [(ngModel)]="user.passwd" />
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="confirmPasswd" class="form-label">Confirmar contraseña *</label>
+                    <input type="password" class="form-control" id="confirmPasswd" name="confirmPasswd" placeholder="Confirma tu contraseña" required
+                        [(ngModel)]="user.confirmPasswd" />
+                </div>
+                <div class="col-12 mb-3">
+                    <input type="checkbox" required [(ngModel)]="user.terms"> Acepta los términos y condiciones
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" style="width: 100%"
+                        [disabled]="!studentForm.form.valid">
+                        Crear cuenta de usuario
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" [hidden]="!submitted">
+        <div class="col-12">
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <div>Formulario enviado</div>
+            </div>
+        </div>
+    </div>
+</div>
